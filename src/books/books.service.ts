@@ -28,7 +28,7 @@ export class BooksService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} book`;
+    return this.bookRepository.findOne({ id });
   }
 
   update(id: number, updateBookDto: UpdateBookDto) {
