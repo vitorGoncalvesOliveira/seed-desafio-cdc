@@ -1,4 +1,10 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class Author {
@@ -14,10 +20,8 @@ export class Author {
   @Column('varchar', { length: 400 })
   descricao: string;
 
-  @Column({
-    nullable: false,
-    default: () => 'CURRENT_TIMESTAMP',
-    type: 'timestamp',
-  })
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
+  @UpdateDateColumn({ name: 'updated_at' })
+  updatedAt: Date;
 }
