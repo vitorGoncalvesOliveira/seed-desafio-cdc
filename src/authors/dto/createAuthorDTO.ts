@@ -1,11 +1,12 @@
 import { IsEmail, IsNotEmpty } from 'class-validator';
 
-export default class Author {
+export class CreateAuthorDTO {
   @IsNotEmpty()
   nome: string;
 
   @IsEmail()
   email: string;
 
+  @IsNotEmpty()
   descricao: string;
 }

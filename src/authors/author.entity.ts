@@ -17,7 +17,7 @@ export class Author {
   @Column({ unique: true })
   email: string;
 
-  @Column('varchar', { length: 400 })
+  @Column()
   descricao: string;
 
   @CreateDateColumn({ name: 'created_at' })

@@ -9,7 +9,7 @@ import {
   ManyToOne,
 } from 'typeorm';
 import { IsDate, Length, Min } from 'class-validator';
-import { Author } from '../../authors/author.entity';
+
 import { Category } from '../../categories/categoty.entity';
 
 @Entity()
@@ -45,9 +45,6 @@ export class Book {
   @ManyToOne(() => Category, (category) => category.books)
   category: Category;
 
-  @ManyToMany(() => Author)
-  @JoinTable()
-  author: Author[];
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

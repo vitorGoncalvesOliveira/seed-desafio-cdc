@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Author } from './author.entity';
-import CreateAuthorDTO from './dto/createAuthor';
+import { CreateAuthorDTO } from './dto/createAuthorDTO';
 
 @Injectable()
 export class AuthorsService {
@@ -16,7 +16,16 @@ export class AuthorsService {
   }
 
   async create(author: CreateAuthorDTO): Promise<Author> {
+    await this.emailAlreadyInUse(author.email)
+
     const newAuthor = await this.authorRepository.save(author);
     return newAuthor;
+  }
+
+  async emailAlreadyInUse(email: string){
+    const isInUse = await this.authorRepository.findOne({email})
+    if(isInUse){
+      throw new BadRequestException('Email already in use');
+    }
   }
 }
