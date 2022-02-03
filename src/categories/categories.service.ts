@@ -15,7 +15,9 @@ export class CategoriesService {
     const categoryAlreadyExist = await this.categoryRepository.findOne({
       nome: body.nome,
     });
+    
     if (categoryAlreadyExist) {
+      
       throw new HttpException(
         {
           status: HttpStatus.BAD_REQUEST,
