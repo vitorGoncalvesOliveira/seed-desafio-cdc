@@ -5,6 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne,
+  OneToMany,
 } from 'typeorm';
 
 import { Book } from '../books/entities/book.entity';
@@ -14,10 +15,10 @@ export class Category {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ unique: true })
+  @Column({ unique: true,  })
   nome: string;
 
-  @ManyToOne(() => Book, (books) => books.category)
+  @OneToMany(() => Book, (books) => books.category)
   books: Book[];
 
   @CreateDateColumn({ name: 'created_at' })

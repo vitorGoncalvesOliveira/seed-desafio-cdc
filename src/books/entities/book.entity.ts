@@ -4,13 +4,12 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToMany,
-  JoinTable,
   ManyToOne,
 } from 'typeorm';
 import { IsDate, Length, Min } from 'class-validator';
 
 import { Category } from '../../categories/categoty.entity';
+import { Author } from 'src/authors/author.entity';
 
 @Entity()
 export class Book {
@@ -44,6 +43,9 @@ export class Book {
 
   @ManyToOne(() => Category, (category) => category.books)
   category: Category;
+
+  @ManyToOne(() => Author, (author) => author.books)
+  author: Author;
 
 
   @CreateDateColumn({ name: 'created_at' })

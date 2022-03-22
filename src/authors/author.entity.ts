@@ -4,7 +4,10 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany
 } from 'typeorm';
+
+import { Book } from '../books/entities/book.entity'
 
 @Entity()
 export class Author {
@@ -19,6 +22,9 @@ export class Author {
 
   @Column()
   descricao: string;
+
+  @OneToMany(() => Book, (book) => book.author)
+  books:Book[]
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

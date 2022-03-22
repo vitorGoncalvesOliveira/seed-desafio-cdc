@@ -41,6 +41,9 @@ docker-compose.yaml
 cdc_dev
 cdc-test
 
+github
+github.pub
+
 
 #HTTP-CLIENT
 *.http

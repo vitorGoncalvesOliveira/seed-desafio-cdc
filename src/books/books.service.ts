@@ -18,8 +18,9 @@ export class BooksService {
       createBookDto.isbn,
     );
     if (bookAlreadyExist) {
-      throw new BadRequestException('Book already exist');
+      throw new BadRequestException('Livro já existente');
     }
+    console.log(createBookDto)
     return this.bookRepository.save(createBookDto);
   }
 

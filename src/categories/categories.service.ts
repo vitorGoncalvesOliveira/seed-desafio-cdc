@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Category } from './categoty.entity';
@@ -16,15 +16,8 @@ export class CategoriesService {
       nome: body.nome,
     });
     
-    if (categoryAlreadyExist) {
-      
-      throw new HttpException(
-        {
-          status: HttpStatus.BAD_REQUEST,
-          error: `Categoria ${body.nome} já existe.`,
-        },
-        HttpStatus.BAD_REQUEST,
-      );
+    if (categoryAlreadyExist) {      
+      throw new BadRequestException('Categoria já cadastrada');
     }
 
     const category = await this.categoryRepository.save(body);
