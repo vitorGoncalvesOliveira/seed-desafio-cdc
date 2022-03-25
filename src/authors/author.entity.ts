@@ -11,6 +11,8 @@ import { Book } from '../books/entities/book.entity'
 
 @Entity()
 export class Author {
+  constructor(private author?: Partial<Author>){}
+
   @PrimaryGeneratedColumn()
   id: number;
 

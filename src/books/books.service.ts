@@ -29,7 +29,7 @@ export class BooksService {
   }
 
   findOne(id: number) {
-    return this.bookRepository.findOne({ id });
+    return this.bookRepository.findOne({ id },{relations:['category','author']});
   }
 
   update(id: number, updateBookDto: UpdateBookDto) {

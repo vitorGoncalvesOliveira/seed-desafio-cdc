@@ -1,5 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { Author } from '../authors/author.entity';
+import { Category } from '../categories/categoty.entity';
 import { BooksService } from './books.service';
 
 import { Book  } from './entities/book.entity'
@@ -40,8 +42,11 @@ describe('BooksService', () => {
 
   it('should be return error, when duplicate title',async () => {
     try{
-      await service.create({titulo:'teste',isbn:'123', page:10,resume:'dafda', preco:1, sumario:'12',data_publicacao: new Date() })
-      await service.create({titulo:'teste',isbn:'123', page:10,resume:'dafda', preco:1, sumario:'12',data_publicacao: new Date() })
+      
+      const author = new Author({ nome:"teste", email:"teste@teste.com" } )
+      const category = new Category({ nome: 'Humor' })
+      await service.create({titulo:'teste',isbn:'123', page:10,resume:'dafda', preco:1, sumario:'12',data_publicacao: new Date(), author, category } )
+      await service.create({titulo:'teste',isbn:'123', page:10,resume:'dafda', preco:1, sumario:'12',data_publicacao: new Date(), author, category })
     }catch(e){
       expect(e.status).toBe(400)
       expect(e.message).toBe('Livro já existente')

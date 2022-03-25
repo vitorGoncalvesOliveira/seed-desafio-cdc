@@ -12,6 +12,7 @@ import { Book } from '../books/entities/book.entity';
 
 @Entity()
 export class Category {
+  constructor(private category?: Partial<Category>){}
   @PrimaryGeneratedColumn()
   id: number;
 

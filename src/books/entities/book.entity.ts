@@ -9,10 +9,12 @@ import {
 import { IsDate, Length, Min } from 'class-validator';
 
 import { Category } from '../../categories/categoty.entity';
-import { Author } from 'src/authors/author.entity';
+import { Author } from '../../authors/author.entity';
 
 @Entity()
 export class Book {
+  constructor(private book?: Partial<Book>){}
+
   @PrimaryGeneratedColumn()
   id: number;
 
